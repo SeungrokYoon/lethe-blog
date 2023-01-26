@@ -1,7 +1,7 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "next/core-web-vitals", "prettier"],
+  "extends": ["next/core-web-vitals", "airbnb", "airbnb/hooks", "prettier"],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import"],
   "root": true,
   "overrides": [
     {
@@ -12,6 +12,39 @@
     }
   ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+        "allowSeparatedGroups": false
+      }
+    ],
+    "import/extensions": ["error", "never", { "svg": "always" }],
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "index",
+          "sibling",
+          "parent",
+          "internal",
+          "external",
+          "builtin",
+          "object",
+          "type"
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ]
   }
 }
