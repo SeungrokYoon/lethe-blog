@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-const sampleHook = ()=>{
+const sampleHook = () => {
   const [value, setValue] = useState()
-  return {value, setValue}
+  return { value, setValue }
 }
 
 export default sampleHook
