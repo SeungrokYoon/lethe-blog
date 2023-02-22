@@ -1,4 +1,4 @@
-const SampleTemplate = () =>{
+const SampleTemplate = () => {
   return <div>Sample Template</div>
 }
 
