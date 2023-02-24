@@ -1,14 +1,18 @@
+---
 name: New Features
 description: General description of new features
 title: '[Feat]: '
-labels: ['feat', 'enhancement']
+labels:
+  - feat
+  - enhancement
 assignees:
   - Seungrok Yoon
 body:
   - type: markdown
     attributes:
-      value: |
-        Thank you for your good ideas for the blog! Which feature do you want to add?
+      value: >
+        Thank you for your good ideas for the blog! Which feature do you want to
+        add?
   - type: textarea
     id: what-to-do
     attributes:
