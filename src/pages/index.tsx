@@ -3,6 +3,7 @@ import GlobalStyle from 'components/Common/GlobalStyle'
 import styled from '@emotion/styled'
 import Introduction from 'components/Main/Introduction'
 import CategoryList from 'components/Main/CategoryList'
+import PostList from 'components/Main/PostList'
 import Footer from 'components/Common/Footer'
 
 const CATEGORY_LIST = {
@@ -23,6 +24,7 @@ const IndexPage: FunctionComponent = function () {
       <GlobalStyle />
       <Introduction />
       <CategoryList selectedCategory="Web" categoryList={CATEGORY_LIST} />
+      <PostList />
       <Footer />
     </Container>
   )
