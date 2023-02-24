@@ -1,6 +1,6 @@
 ---
-name: "New Features"
-description: "General description of new features"
+name: New Features
+description: General description of new features
 title: '[Feat]: '
 labels:
   - feat
@@ -11,13 +11,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        "Thank you for your good ideas for the blog! Which feature do you want to add?"
+        Thank you for your good ideas for the blog! Which feature do you want to add?
   - type: textarea
     id: what-to-do
     attributes:
       label: What feature do you want to add?
       description: Also tell us, how this feature would benefit users?
       placeholder: Tell us what you are thinking!
-      value: ''
     validations:
       required: true
