@@ -10,7 +10,7 @@ assignees:
 body:
   - type: markdown
     attributes:
-      value: >
+      value: |
         Thank you for your good ideas for the blog! Which feature do you want to
         add?
   - type: textarea
