@@ -1,8 +1,9 @@
-name: New Feature Plans
+name: New Features
 description: General description of new features
 title: '[Feat]: '
 labels: ['feat', 'enhancement']
-assignees: Seungrok Yoon
+assignees:
+  - Seungrok Yoon
 body:
   - type: markdown
     attributes:
@@ -15,3 +16,5 @@ body:
       description: Also tell us, how this feature would benefit users?
       placeholder: Tell us what you are thinking!
       value: ''
+    validations:
+      required: true
