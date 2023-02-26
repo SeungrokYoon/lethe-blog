@@ -52,14 +52,36 @@ const Title = styled.div`
   overflow: hidden;
 `
 
-const Data = styled.div``
-const Category = styled.div``
-const CategoryItem = styled.div``
-const Summary = styled.div``
+const Date = styled.div`
+  font-size: 14px;
+  opacity: 0.8;
+`
+const Category = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px -5px;
+`
+const CategoryItem = styled.div`
+  margin: 2.5px 5px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  background-color: black;
+  font-weight: 700;
+  color: white;
+`
+const Summary = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 0.7;
+`
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
   title,
-  data,
+  date,
   categories,
   summary,
   thumbnail,
@@ -75,6 +97,18 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
           distinctio consectetur harum tenetur, reiciendis alias adipisci id et
           voluptate, dignissimos dicta!
         </Title>
+        <Date>2023.02.26</Date>
+        <Category>
+          <CategoryItem>카테고리1</CategoryItem>
+          <CategoryItem>카테고리2</CategoryItem>
+          <CategoryItem>카테고리3</CategoryItem>
+        </Category>
+        <Summary>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quae
+          maxime asperiores. Laudantium ad neque dignissimos, non itaque aperiam
+          ab omnis delectus similique labore sunt laboriosam, amet voluptatum
+          voluptatibus voluptate!
+        </Summary>
       </PostItemContent>
     </PostItemWrapper>
   )
