@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 
 type PostItemProps = {
   title: string
-  data: string
+  date: string
   categories: string[]
   summary: string
   thumbnail: string
@@ -91,24 +91,14 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
     <PostItemWrapper to={link}>
       <ThumbnailImage src={thumbnail} alt="Post Item Image" />
       <PostItemContent>
-        <Title>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis
-          dolorum tempore qui illum hic aspernatur ut eos consequuntur
-          distinctio consectetur harum tenetur, reiciendis alias adipisci id et
-          voluptate, dignissimos dicta!
-        </Title>
-        <Date>2023.02.26</Date>
+        <Title>{title}</Title>
+        <Date>{date}</Date>
         <Category>
-          <CategoryItem>카테고리1</CategoryItem>
-          <CategoryItem>카테고리2</CategoryItem>
-          <CategoryItem>카테고리3</CategoryItem>
+          {categories.map(category => (
+            <CategoryItem key={category}>{category}</CategoryItem>
+          ))}
         </Category>
-        <Summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quae
-          maxime asperiores. Laudantium ad neque dignissimos, non itaque aperiam
-          ab omnis delectus similique labore sunt laboriosam, amet voluptatum
-          voluptatibus voluptate!
-        </Summary>
+        <Summary>{summary}</Summary>
       </PostItemContent>
     </PostItemWrapper>
   )

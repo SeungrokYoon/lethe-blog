@@ -4,7 +4,7 @@ import PostItem from './PostItem'
 
 const POST_ITEM_DATA = {
   title: 'POST item title',
-  data: '2023.02.25',
+  date: '2023.02.25',
   categories: ['Web', 'Frontend', 'Testing'],
   summary: 'This is a fake post summary data',
   thumbnail:
@@ -20,11 +20,21 @@ const PostListWrapper = styled.div`
   width: 768px;
   margin: 0 auto;
   padding: 50px 0 100px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 50px 20px;
+  }
 `
 
 const PostList: FunctionComponent = function () {
   return (
     <PostListWrapper>
+      <PostItem {...POST_ITEM_DATA} />
+      <PostItem {...POST_ITEM_DATA} />
+      <PostItem {...POST_ITEM_DATA} />
+      <PostItem {...POST_ITEM_DATA} />
       <PostItem {...POST_ITEM_DATA} />
     </PostListWrapper>
   )
