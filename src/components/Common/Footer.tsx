@@ -3,17 +3,16 @@ import { FunctionComponent } from 'react'
 
 const FooterWrapper = styled.div`
   display: grid;
-  grid-template-columns: 3;
-  grid-template-rows: 3;
-  column-gap: 1em;
-  row-gap: 1em;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   margin-top: auto;
   padding: 50px 0px;
   font-size: 15px;
   text-align: center;
   line-height: 1.5;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
 `
 
 const Footer: FunctionComponent = function () {
