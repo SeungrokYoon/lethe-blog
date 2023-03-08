@@ -2,28 +2,10 @@ import styled from '@emotion/styled'
 import { FunctionComponent } from 'react'
 import PostItem from './PostItem'
 
-const POST_ITEM_DATA = {
-  title: 'POST item title',
-  date: '2023.02.25',
-  categories: ['Web', 'Frontend', 'Testing'],
-  summary: 'This is a fake post summary data',
-  thumbnail:
-    'https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  link: 'https://www.google.co.kr',
-}
-
 export type PostType = {
   node: {
     id: string
-    frontmatter: {
-      title: string
-      summary: string
-      date: string
-      categories: string[]
-      thumbnail: {
-        publicURL: string
-      }
-    }
+    frontmatter: PostFrontmatterType
   }
 }
 
