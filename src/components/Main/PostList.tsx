@@ -12,6 +12,25 @@ const POST_ITEM_DATA = {
   link: 'https://www.google.co.kr',
 }
 
+export type PostType = {
+  node: {
+    id: string
+    frontmatter: {
+      title: string
+      summary: string
+      date: string
+      categories: string[]
+      thumbnail: {
+        publicURL: string
+      }
+    }
+  }
+}
+
+type PostListProps = {
+  posts: PostType[]
+}
+
 const PostListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -28,14 +47,13 @@ const PostListWrapper = styled.div`
   }
 `
 
-const PostList: FunctionComponent = function () {
+const PostList: FunctionComponent<PostListProps> = function ({ posts }) {
+  console.log(posts)
   return (
     <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+      {posts.map(({ node: { id, frontmatter } }: PostType) => (
+        <PostItem {...frontmatter} link="https://www.google.co.kr" key={id} />
+      ))}
     </PostListWrapper>
   )
 }
