@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { FunctionComponent } from 'react'
+import { PostFrontmatterType } from 'types/PostItem.types'
 import PostItem from './PostItem'
 
 export type PostType = {

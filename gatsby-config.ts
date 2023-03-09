@@ -28,7 +28,16 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-transformer-sharp',
+      options: {
+        defaults: {
+          formats: ['auto', 'webp'],
+          quality: 100,
+          placeholder: 'blurred',
+        },
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
