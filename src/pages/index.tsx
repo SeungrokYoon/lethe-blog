@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useMemo } from 'react'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import styled from '@emotion/styled'
 import Introduction from 'components/Main/Introduction'
-import CategoryList from 'components/Main/CategoryList'
+import CategoryList, { CategoryListProps } from 'components/Main/CategoryList'
 import PostList from 'components/Main/PostList'
 import Footer from 'components/Common/Footer'
 import { graphql } from 'gatsby'
@@ -26,12 +26,6 @@ type IndexPageProps = {
   }
 }
 
-const CATEGORY_LIST = {
-  ALL: 5,
-  Web: 3,
-  Mobile: 2,
-}
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,7 +45,28 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   const selectedCategory: string =
     typeof parsed.category === 'string' && parsed.category
       ? parsed.category
-      : 'ALL'
+      : 'All'
+  const categoryList = useMemo(
+    () =>
+      edges.reduce(
+        (prevCategoryObj: CategoryListProps['categoryList'], edge) => {
+          const {
+            node: {
+              frontmatter: { categories },
+            },
+          } = edge
+          categories.forEach(category => {
+            prevCategoryObj[category] === undefined
+              ? (prevCategoryObj[category] = 1)
+              : prevCategoryObj[category]++
+          })
+          prevCategoryObj['All']++
+          return prevCategoryObj
+        },
+        { All: 0 },
+      ),
+    [],
+  )
 
   return (
     <Container>
@@ -59,7 +74,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
       <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
-        categoryList={CATEGORY_LIST}
+        categoryList={categoryList}
       />
       <PostList posts={edges} />
       <Footer />
