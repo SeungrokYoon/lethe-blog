@@ -11,6 +11,7 @@ export type PostType = {
 }
 
 type PostListProps = {
+  selectedCategory: string
   posts: PostType[]
 }
 
@@ -30,13 +31,23 @@ const PostListWrapper = styled.div`
   }
 `
 
-const PostList: FunctionComponent<PostListProps> = function ({ posts }) {
-  console.log(posts)
+const PostList: FunctionComponent<PostListProps> = function ({
+  selectedCategory,
+  posts,
+}) {
   return (
     <PostListWrapper>
-      {posts.map(({ node: { id, frontmatter } }: PostType) => (
-        <PostItem {...frontmatter} link="https://www.google.co.kr" key={id} />
-      ))}
+      {posts
+        .filter(
+          ({
+            node: {
+              frontmatter: { categories },
+            },
+          }) => categories.includes(selectedCategory),
+        )
+        .map(({ node: { id, frontmatter } }: PostType) => (
+          <PostItem {...frontmatter} link="https://www.google.co.kr" key={id} />
+        ))}
     </PostListWrapper>
   )
 }
