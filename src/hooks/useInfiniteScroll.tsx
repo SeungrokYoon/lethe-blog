@@ -25,18 +25,22 @@ const useInfiniteScroll = function (
     [selectedCategory],
   )
 
-  const observer: IntersectionObserver = new IntersectionObserver(
-    (entries, observer) => {
-      if (!entries[0].isIntersecting) return
-      setCount(value => value + 1)
-      observer.disconnect()
-    },
-    {
-      root: null,
-      threshold: 0.25,
-      rootMargin: '0px',
-    },
-  )
+  const observer = useRef<IntersectionObserver>()
+
+  useEffect(() => {
+    observer.current = new IntersectionObserver(
+      (entries, observer) => {
+        if (!entries[0].isIntersecting) return
+        setCount(value => value + 1)
+        observer.disconnect()
+      },
+      {
+        root: null,
+        threshold: 0.25,
+        rootMargin: '0px',
+      },
+    )
+  }, [])
 
   useEffect(() => setCount(1), [selectedCategory])
 
@@ -47,7 +51,7 @@ const useInfiniteScroll = function (
       containerRef.current.children.length === 0
     )
       return
-    observer.observe(
+    observer.current?.observe(
       containerRef.current.children[containerRef.current.children.length - 1],
     )
   }, [count, selectedCategory])
