@@ -28,7 +28,16 @@ const config: GatsbyConfig = {
     },
     'gatsby-plugin-mdx',
     'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
+    {
+      resolve: 'gatsby-transformer-sharp',
+      options: {
+        defaults: {
+          formats: ['auto', 'webp'],
+          quality: 100,
+          placeholder: 'blurred',
+        },
+      },
+    },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -43,7 +52,22 @@ const config: GatsbyConfig = {
         name: 'contents',
         path: `${__dirname}/contents`,
       },
+      __key: 'contents',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `${__dirname}/src/pages`,
+      },
       __key: 'pages',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'static',
+        path: `${__dirname}/static`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,

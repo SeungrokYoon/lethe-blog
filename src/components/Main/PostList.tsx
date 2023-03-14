@@ -1,15 +1,12 @@
 import styled from '@emotion/styled'
+import useInfiniteScroll from 'hooks/useInfiniteScroll'
 import { FunctionComponent } from 'react'
+import { PostListItemType } from 'types/PostItem.types'
 import PostItem from './PostItem'
 
-const POST_ITEM_DATA = {
-  title: 'POST item title',
-  date: '2023.02.25',
-  categories: ['Web', 'Frontend', 'Testing'],
-  summary: 'This is a fake post summary data',
-  thumbnail:
-    'https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
-  link: 'https://www.google.co.kr',
+type PostListProps = {
+  selectedCategory: string
+  posts: PostListItemType[]
 }
 
 const PostListWrapper = styled.div`
@@ -28,14 +25,25 @@ const PostListWrapper = styled.div`
   }
 `
 
-const PostList: FunctionComponent = function () {
+const PostList: FunctionComponent<PostListProps> = function ({
+  selectedCategory,
+  posts,
+}) {
+  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts)
+
   return (
-    <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+    <PostListWrapper ref={containerRef}>
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }
