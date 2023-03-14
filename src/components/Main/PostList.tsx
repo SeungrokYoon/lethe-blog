@@ -1,19 +1,12 @@
 import styled from '@emotion/styled'
 import useInfiniteScroll from 'hooks/useInfiniteScroll'
 import { FunctionComponent } from 'react'
-import { PostFrontmatterType } from 'types/PostItem.types'
+import { PostListItemType } from 'types/PostItem.types'
 import PostItem from './PostItem'
-
-export type PostType = {
-  node: {
-    id: string
-    frontmatter: PostFrontmatterType
-  }
-}
 
 type PostListProps = {
   selectedCategory: string
-  posts: PostType[]
+  posts: PostListItemType[]
 }
 
 const PostListWrapper = styled.div`
@@ -40,9 +33,17 @@ const PostList: FunctionComponent<PostListProps> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }: PostType) => (
-        <PostItem {...frontmatter} link="https://www.google.co.kr" key={id} />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostListItemType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   )
 }
