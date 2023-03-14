@@ -64,7 +64,10 @@ const config: GatsbyConfig = {
     },
     {
       resolve: 'gatsby-source-filesystem',
-      options: { name: 'images', path: `${__dirname}/static` },
+      options: {
+        name: 'static',
+        path: `${__dirname}/static`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-gtag`,
