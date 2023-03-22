@@ -1,3 +1,4 @@
+import AnimatedCard from 'components/Common/AnimatedCard'
 import Template from 'components/Common/Template'
 import PostContent from 'components/Post/PostContent'
 import PostHead from 'components/Post/PostHead'
@@ -46,6 +47,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
         categories={categories}
         thumbnail={gatsbyImageData}
       />
+      <AnimatedCard />
       <PostContent html={html} />
       Post Template
     </Template>
